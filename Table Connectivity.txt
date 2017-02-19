@@ -1,0 +1,36 @@
+Table Connectivity
+
+
+DefaultTableModel model2 = (DefaultTableModel) jTable1.getModel();
+        try {
+            Class.forName("java.sql.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/subham", "root", "admin");
+            stmt = con.createStatement();
+
+            String cname = (String) jList3.getSelectedValue();
+
+
+
+            String query = "select * from car where name='" + cname + "';";
+            System.out.println(query);
+            rs = stmt.executeQuery(query);
+            int count = 0;
+
+            int rows = model2.getRowCount();
+            if (rows > 0) {
+                for (int l = 0; l < rows; l++) {
+                    model2.removeRow(0);
+                }
+            }
+
+            while (rs.next()) {
+                count++;
+                model2.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)});
+            }
+            rs.close();
+            stmt.close();
+            con.close();
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Error in Connectivity");
+        }

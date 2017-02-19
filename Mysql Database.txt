@@ -1,0 +1,31 @@
+create database shubham;
+
+use shubham;
+
+create table car(name varchar(20),cost numeric(10),mileage numeric(5),fuel numeric(6),topspeed numeric(5),torque numeric(5));
+
+insert into car values("Superleggara",400000,25,300,300,60);
+
+insert into car values("SuperVeloce",450000,28,270,360,70);
+
+insert into car values("Scruderia",300000,22,350,260,65);
+
+insert into car values("California",500000,27,300,290,62);
+
+insert into car values("R9",440000,15,390,330,70);
+
+insert into car values("R8",445000,23,400,280,78);
+
+insert into car values("16.4",555000,24,500,290,90);
+
+insert into car values("Supersport",655000,30,550,490,90);
+
+insert into car values("BMW M4",600000,28,570,300,95);
+
+insert into car values("H2",100000,20,400,200,85);
+
+Select * from car;
+
+commit;
+
+

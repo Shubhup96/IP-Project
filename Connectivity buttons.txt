@@ -1,0 +1,132 @@
+Show Details
+
+
+
+
+String item = jTextField5.getText();
+       try {
+            Class.forName("java.sql.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/subham", "root", "admin");
+            stmt = con.createStatement();
+            String query = "select * from car where name='" + item + "';";
+            System.out.println(query);
+            rs = stmt.executeQuery(query);
+
+            if (rs.next()) {
+                String cost = rs.getString("cost");
+                String mileage = rs.getString("mileage");
+                String fuel = rs.getString("fuel");
+                String topspeed = rs.getString("topspeed");
+                String torque = rs.getString("torque");
+
+                jTextField6.setText(cost);
+                jTextField7.setText(mileage);
+                jTextField8.setText(fuel);
+                jTextField9.setText(topspeed);
+                jTextField10.setText(torque);
+            } 
+else 
+{
+                JOptionPane.showMessageDialog(null, "No such record found");
+            }
+        } 
+catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error in Connectivity");
+        }
+
+--------------------------------------------------------------
+Update
+
+
+
+
+
+
+
+
+
+String item = jTextField5.getText();
+        int ans = JOptionPane.showConfirmDialog(null, "Want to update the record");
+        if (ans == JOptionPane.YES_OPTION) {
+            try {
+                Class.forName("java.sql.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost/subham", "root", "admin");
+                stmt = con.createStatement();
+                String query = "update car set cost=" + jTextField6.getText() + ",mileage=" + jTextField7.getText() + ",fuel=" + jTextField8.getText() + ",topspeed=" + jTextField9.getText() + ",torque=" + jTextField10.getText() + " " + "where name='" + item + "';";
+                System.out.println(query);
+                stmt.executeUpdate(query);
+
+                JOptionPane.showMessageDialog(null, "record updated");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "error in updation");
+            }
+        }
+        jTextField6.setText("");
+        jTextField7.setText("");
+        jTextField8.setText("");
+        jTextField9.setText("");
+        jTextField10.setText("");
+
+---------------------------------------------------------------------
+Add New
+
+
+
+
+
+
+
+int ans = JOptionPane.showConfirmDialog(null, "Want to insert the record");
+        if (ans == JOptionPane.YES_OPTION)
+        {
+            try {
+                Class.forName("java.sql.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost/subham", "root", "admin");
+                stmt = con.createStatement();
+                String query ="Insert into car values(" + "'" + jTextField5.getText() + "'" + "," + jTextField6.getText() + "," + jTextField7.getText() + "," + jTextField8.getText() + "," + jTextField9.getText() + "," +jTextField10.getText() + ");";
+                System.out.println(query);
+                stmt.executeUpdate(query);
+
+                JOptionPane.showMessageDialog(null, "record inserted");
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "error in insertion");
+            }
+        }
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+        jTextField8.setText("");
+        jTextField9.setText("");
+        jTextField10.setText("");
+
+--------------------------------------------------------------
+Remove
+
+
+
+
+
+ String item = jTextField5.getText();
+        int res = JOptionPane.showConfirmDialog(null, "Want to delete the record");
+        if (res == JOptionPane.YES_OPTION) {
+            try {
+                Class.forName("java.sql.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost/subham", "root", "admin");
+                stmt = con.createStatement();
+                String query = "delete from car where name='" + item + "';";
+                System.out.println(query);
+                stmt.executeUpdate(query);
+
+                JOptionPane.showMessageDialog(null, "record deleted");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "error in deletion");
+            }
+        }
+        jTextField5.setText("");
+------------------------------------------------------------------

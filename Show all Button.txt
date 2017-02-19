@@ -1,0 +1,30 @@
+Show All Details
+
+
+
+DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
+        try
+        {
+             Class.forName("java.sql.Driver");
+             Connection con=DriverManager.getConnection("jdbc:mysql://localhost/subham","root","admin");
+          Statement  stmt=con.createStatement();
+
+
+          String query="select * from car;";
+
+          ResultSet  rs=stmt.executeQuery(query);
+          int count=0;
+          while(rs.next())
+          {
+              count++;
+              model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)});
+         }
+          rs.close();
+          stmt.close();
+          con.close();
+        }
+        catch(Exception e)
+        {
+
+           JOptionPane.showMessageDialog(null,"Error in Connectivity");
+       }
